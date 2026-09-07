@@ -79,6 +79,40 @@ scorer for hybrid ranking. Every ranked passage retains its source identifier, d
 page range, section, and content hash. PDF extraction can still be imperfect for scanned or
 complex layouts, so flagged pages require human review before publication.
 
+## Advanced research agents
+
+The literature-review agent records every screening decision, builds a study-comparison
+matrix, identifies recurring methods/datasets/metrics/limitations, appraises evidence,
+maps explicitly coded contradictions, and reports corpus limitations before any narrative
+is drafted. Missing abstracts or years are routed to human review rather than guessed.
+
+The contribution agent permits a gap to become a proposed contribution only when the gap
+has a measurable evidence basis and at least moderate confidence. It creates a falsifiable
+experiment with baselines, primary outcomes, ablations, uncertainty estimates, robustness
+checks, and predeclared failure criteria.
+
+The mathematical-model agent builds normalized multi-objective formulations with explicit
+symbols, assumptions, constraints, derivation steps, identifiability conditions, sensitivity
+analysis, Pareto reporting, complexity analysis, invariants, and failure modes. It labels
+novelty and validity as hypotheses until prior-art and empirical verification are complete.
+
+The publication-readiness gate links each evidence claim to an exact page, section, table,
+or record; checks source retrievability, metadata, and retraction status; reports partial or
+contradictory support; and requires recorded expert approval for novelty, mathematical
+validity, interpretation, and final publication.
+
+Stage 7 binds cited excerpts to immutable content hashes and requires an independent semantic
+verifier for every linked passage. Claims are explicitly typed as direct evidence, inference,
+author contribution, hypothesis, speculation, or limitation. High-confidence conclusions need
+two independent primary-study groups, while review-only support for a primary result is blocked
+as possible citation laundering. Corrections, expressions of concern, and retractions are tracked.
+
+Publication approval is locked to a canonical manuscript fingerprint and expires after its
+declared validity period. A chained SHA-256 audit trail exposes later edits. Release also requires
+a statistical-validation record (assumptions, sample-size rationale, leakage tests, effect sizes,
+confidence intervals, and multiplicity handling) and a reproducibility package containing exact
+configuration, seeds, environment lock, dataset version, experiment logs, and code commit.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive

@@ -6,6 +6,8 @@ from .checkpoints import CheckpointStore
 from .config import Settings
 from .models import ResearchResult
 from .protocol import create_protocol
+from .literature import LiteratureReviewAgent
+from .screening import ScreeningCriteria
 from .router import route_query
 
 AgentHandler = Callable[[str], ResearchResult]
@@ -55,6 +57,10 @@ class ResearchEngine:
     def plan(self, query: str):
         """Create the auditable protocol before retrieval or generation."""
         return create_protocol(query)
+
+    def review(self, studies, criteria: ScreeningCriteria, findings=None):
+        """Run the structured review layer without generating unsupported prose."""
+        return LiteratureReviewAgent().analyze(studies, criteria, findings)
 
     def health(self) -> dict[str, object]:
         configured = bool(self.settings.api_key)

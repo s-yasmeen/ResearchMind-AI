@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TAPF · 3D Working Model</title>
+  <style>
+    :root{--bg:#050c17;--panel:#0d1b2d;--line:#25415e;--cyan:#5ee7df;--violet:#a993ff;--amber:#ffd17a;--ink:#f0f7ff;--muted:#91a7bf}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:radial-gradient(circle at 50% 0,#173b59 0,transparent 42%),var(--bg);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+    .wrap{max-width:1200px;margin:auto;padding:26px 20px 45px}.head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.eyebrow{font-size:11px;letter-spacing:.14em;color:var(--cyan);font-weight:800;text-transform:uppercase}.title{font-size:clamp(28px,5vw,52px);line-height:1;letter-spacing:-.06em;margin:8px 0}.lead{color:var(--muted);max-width:650px}.pill{border:1px solid #5ee7df55;background:#5ee7df12;color:var(--cyan);border-radius:99px;padding:9px 12px;white-space:nowrap}
+    .stage{min-height:480px;display:flex;align-items:center;justify-content:center;perspective:1100px;overflow:hidden}.scene{position:relative;width:min(850px,92vw);height:360px;transform-style:preserve-3d;transform:rotateX(8deg) rotateY(-8deg);transition:transform .5s}.scene:hover{transform:rotateX(4deg) rotateY(-2deg) scale(1.015)}.beam{position:absolute;top:159px;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--violet));box-shadow:0 0 20px var(--cyan);opacity:.8}.b1{left:12%;width:18%}.b2{left:42%;width:16%}.b3{left:72%;width:17%}.node{position:absolute;top:80px;width:150px;height:180px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#142b44ee,#091524ee);box-shadow:0 22px 35px #0007;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform-style:preserve-3d}.node:before{content:"";position:absolute;inset:8px;border:1px solid #ffffff08;border-radius:12px;transform:translateZ(12px)}.node h3{font-size:14px;margin:15px 8px 4px}.node p{font-size:11px;color:var(--muted);margin:0 12px}.n1{left:3%;transform:translateZ(15px)}.n2{left:31%;border-color:#a993ff88;transform:translateZ(35px)}.n3{left:59%;border-color:#ffd17a88;transform:translateZ(55px)}.n4{right:3%;border-color:#5ee7df88;transform:translateZ(35px)}.icon{height:58px;width:72px;display:grid;place-items:center;border-radius:16px;background:#5ee7df12;color:var(--cyan);font-size:30px}.n2 .icon{background:#a993ff15;color:var(--violet)}.n3 .icon{background:#ffd17a15;color:var(--amber)}.n4 .icon{background:#5ee7df15;color:var(--cyan)}.face{width:37px;height:46px;border:2px solid currentColor;border-radius:48% 48% 44% 44%;position:relative}.face:after{content:"••";letter-spacing:12px;position:absolute;left:8px;top:10px;font-size:14px}.shield{font-size:37px}.mask{width:58px;height:22px;border:2px dashed currentColor;border-radius:5px;transform:rotate(-8deg)}.video{width:60px;height:43px;border:2px solid currentColor;border-radius:7px;position:relative}.video:after{content:"▶";position:absolute;left:23px;top:8px;font-size:17px}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}.card{background:#0d1b2ddd;border:1px solid var(--line);border-radius:16px;padding:18px}.card h2{font-size:15px;margin:0 0 12px}.row{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.row b{color:var(--ink)}input[type=range]{width:100%;accent-color:var(--cyan);margin:14px 0 7px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metric{background:#071321;border:1px solid var(--line);border-radius:10px;padding:10px}.metric b{display:block;font-size:20px}.metric span{color:var(--muted);font-size:11px}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.cyan{background:var(--cyan)}.violet{background:var(--violet)}.amber{background:var(--amber)}.footer{color:var(--muted);font-size:12px;margin-top:22px;text-align:center}
+    @media(max-width:700px){.head{display:block}.pill{display:inline-block;margin-top:15px}.stage{min-height:540px}.scene{transform:scale(.7) rotateX(8deg) rotateY(-8deg);width:850px}.controls{grid-template-columns:1fr}.readout{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header class="head"><div><div class="eyebrow">TAPF · Task-Aware Privacy Firewall</div><h1 class="title">Protect identity.<br>Preserve the signal.</h1><p class="lead">An interactive 3D concept model for privacy-aware telemedicine video. The visualization explains the pipeline; it does not process real patient footage.</p></div><div class="pill">● Presentation prototype</div></header>
+  <section class="stage" aria-label="Interactive 3D TAPF pipeline">
+    <div class="scene" id="scene">
+      <span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span>
+      <article class="node n1"><div class="icon"><span class="video"></span></div><h3>1 · Video input</h3><p>Motion enters the firewall</p></article>
+      <article class="node n2"><div class="icon"><span class="face"></span></div><h3>2 · Identity layer</h3><p>Face geometry is detected</p></article>
+      <article class="node n3"><div class="icon"><span class="mask"></span></div><h3>3 · Adaptive mask</h3><p>Mask strength follows task need</p></article>
+      <article class="node n4"><div class="icon"><span class="shield">♢</span></div><h3>4 · Protected output</h3><p>Utility remains, identity is reduced</p></article>
+    </div>
+  </section>
+  <section class="controls">
+    <div class="card"><h2>Firewall control</h2><div class="row"><span>Privacy strength</span><b id="privacyValue">72%</b></div><input id="privacy" type="range" min="0" max="100" value="72"><div class="row"><span>Task utility estimate</span><b id="utilityValue">84%</b></div><input id="utility" type="range" min="0" max="100" value="84"><div class="legend"><span><i class="cyan"></i>utility path</span><span><i class="violet"></i>identity analysis</span><span><i class="amber"></i>adaptive decision</span></div></div>
+    <div class="card"><h2>Live evaluation view</h2><div class="readout"><div class="metric"><b id="leakage">28%</b><span>identity leakage ↓</span></div><div class="metric"><b id="motion">84%</b><span>motion utility ↑</span></div><div class="metric"><b id="risk">Low</b><span>release risk</span></div></div><p class="footer">Illustrative values · real measurements require approved datasets and an executed experiment.</p></div>
+  </section>
+  <p class="footer">Powered by ResearchMind AI · TAPF research presentation model</p>
+</main>
+<script>
+  const privacy=document.querySelector('#privacy'),utility=document.querySelector('#utility');
+  function update(){const p=+privacy.value,u=+utility.value;document.querySelector('#privacyValue').textContent=p+'%';document.querySelector('#utilityValue').textContent=u+'%';document.querySelector('#leakage').textContent=(100-p)+'%';document.querySelector('#motion').textContent=u+'%';document.querySelector('#risk').textContent=p>70&&u>65?'Low':p>45?'Review':'High';}
+  privacy.addEventListener('input',update);utility.addEventListener('input',update);update();
+</script>
+</body>
+</html>
