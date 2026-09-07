@@ -5,7 +5,17 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 
-ClaimKind = Literal["evidence", "author_contribution", "interpretation", "limitation"]
+ClaimKind = Literal[
+    "evidence",  # backward-compatible alias for direct_evidence
+    "direct_evidence",
+    "inference",
+    "author_contribution",
+    "hypothesis",
+    "speculation",
+    "interpretation",  # backward-compatible alias for inference
+    "limitation",
+]
+ClaimConfidence = Literal["high", "moderate", "low", "not_applicable"]
 
 
 @dataclass(frozen=True)
@@ -15,6 +25,8 @@ class ManuscriptClaim:
     kind: ClaimKind
     source_identifiers: tuple[str, ...] = ()
     uncertainty: str | None = None
+    confidence: ClaimConfidence = "moderate"
+    derived_from_claims: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -83,13 +95,15 @@ def manuscript_quality_gate(manuscript: Manuscript, known_sources: set[str]) -> 
         if claim.claim_id in ids:
             problems.append(f"Duplicate claim identifier: {claim.claim_id}")
         ids.add(claim.claim_id)
-        if claim.kind == "evidence" and not claim.source_identifiers:
+        if claim.kind in {"evidence", "direct_evidence"} and not claim.source_identifiers:
             problems.append(f"Evidence claim has no citation: {claim.claim_id}")
         for source in claim.source_identifiers:
             if source not in known_sources:
                 problems.append(f"Claim {claim.claim_id} cites unknown source: {source}")
-        if claim.kind == "interpretation" and not claim.uncertainty:
+        if claim.kind in {"interpretation", "inference", "hypothesis", "speculation"} and not claim.uncertainty:
             problems.append(f"Interpretive claim lacks uncertainty statement: {claim.claim_id}")
+        if claim.kind in {"author_contribution", "hypothesis", "speculation", "limitation"} and claim.confidence == "high":
+            problems.append(f"Claim category cannot be high confidence: {claim.claim_id}")
 
     for model in manuscript.models:
         if not model.assumptions:
