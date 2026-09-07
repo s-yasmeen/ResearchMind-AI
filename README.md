@@ -12,6 +12,7 @@ reports. This branch contains the rebuilt, testable foundation.
 - Resumable checkpoint storage
 - CLI installation diagnostics
 - Automated foundation tests
+- GitHub Actions checks on Python 3.10 and 3.12
 
 Live paper retrieval, citation verification, and the Streamlit workspace are intentionally
 scheduled for later stages so each layer can be verified independently.
@@ -34,6 +35,8 @@ pytest
 ```
 
 The diagnostic command does not call an external model and does not require an API key.
+It reports `setup_required` until a key is configured, rather than claiming live research
+is ready prematurely.
 
 ## Security
 
