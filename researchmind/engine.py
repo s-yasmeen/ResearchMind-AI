@@ -42,8 +42,10 @@ class ResearchEngine:
         return result
 
     def health(self) -> dict[str, object]:
+        configured = bool(self.settings.api_key)
         return {
-            "status": "ready",
+            "status": "ready" if configured else "setup_required",
+            "can_run_live_research": configured,
             "configuration": self.settings.safe_summary(),
             "agents": ["literature", "methodology", "writing"],
         }
