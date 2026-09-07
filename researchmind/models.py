@@ -15,6 +15,10 @@ class Source:
     authors: tuple[str, ...] = ()
     year: int | None = None
     identifier: str | None = None
+    venue: str | None = None
+    publication_type: str | None = None
+    retrieved_from: str | None = None
+    retrieved_at: str | None = None
 
 
 @dataclass(frozen=True)
