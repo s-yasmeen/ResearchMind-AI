@@ -96,6 +96,11 @@ symbols, assumptions, constraints, derivation steps, identifiability conditions,
 analysis, Pareto reporting, complexity analysis, invariants, and failure modes. It labels
 novelty and validity as hypotheses until prior-art and empirical verification are complete.
 
+The publication-readiness gate links each evidence claim to an exact page, section, table,
+or record; checks source retrievability, metadata, and retraction status; reports partial or
+contradictory support; and requires recorded expert approval for novelty, mathematical
+validity, interpretation, and final publication.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive
