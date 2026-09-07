@@ -16,6 +16,7 @@ class Settings:
     base_url: str = "https://openrouter.ai/api/v1"
     timeout_seconds: float = 60.0
     data_dir: Path = Path(".researchmind")
+    contact_email: str | None = None
 
     @classmethod
     def from_env(cls, *, require_api_key: bool = True) -> "Settings":
@@ -48,6 +49,7 @@ class Settings:
             base_url=base_url,
             timeout_seconds=timeout,
             data_dir=Path(os.getenv("RESEARCHMIND_DATA_DIR", ".researchmind")),
+            contact_email=os.getenv("RESEARCHMIND_CONTACT_EMAIL", "").strip() or None,
         )
 
     def safe_summary(self) -> dict[str, object]:
@@ -59,4 +61,5 @@ class Settings:
             "timeout_seconds": self.timeout_seconds,
             "api_key_configured": bool(self.api_key),
             "data_dir": str(self.data_dir),
+            "contact_email_configured": bool(self.contact_email),
         }
