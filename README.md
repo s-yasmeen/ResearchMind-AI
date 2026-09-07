@@ -53,6 +53,21 @@ ResearchMind follows a protocol-first workflow inspired by systematic-review pra
 The software does not treat an LLM suggestion as evidence. Human expert review remains
 required for eligibility decisions, risk-of-bias assessment, and final scientific claims.
 
+## Scholarly metadata retrieval
+
+The retrieval layer currently supports Crossref and arXiv descriptive metadata. It:
+
+- records provider, query, parameters, retrieval time, and result count;
+- normalizes DOI and arXiv identifiers;
+- deduplicates DOI matches, arXiv versions, and exact normalized title/year matches;
+- strips markup from abstracts;
+- labels arXiv records as preprints;
+- never assumes a Crossref journal record has passed peer review;
+- caches identical searches within a running session; and
+- enforces arXiv's minimum three-second interval between uncached requests.
+
+ResearchMind acknowledges arXiv metadata use and does not redistribute paper content.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive
