@@ -105,6 +105,35 @@ class ResearchProtocol:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class DocumentPage:
+    document_id: str
+    page_number: int
+    text: str
+    section: str | None = None
+    extraction_warning: str | None = None
+
+
+@dataclass(frozen=True)
+class EvidenceChunk:
+    chunk_id: str
+    document_id: str
+    source_identifier: str
+    page_start: int
+    page_end: int
+    section: str | None
+    text: str
+    content_hash: str
+
+
+@dataclass(frozen=True)
+class RankedChunk:
+    chunk: EvidenceChunk
+    keyword_score: float
+    semantic_score: float | None
+    combined_score: float
+
+
 @dataclass
 class ResearchResult:
     query: str
