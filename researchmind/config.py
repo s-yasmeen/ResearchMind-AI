@@ -32,12 +32,20 @@ class Settings:
         if timeout <= 0:
             raise ConfigurationError("RESEARCHMIND_TIMEOUT_SECONDS must be greater than zero.")
 
+        model = os.getenv("RESEARCHMIND_MODEL", "openai/gpt-4.1-mini").strip()
+        if not model:
+            raise ConfigurationError("RESEARCHMIND_MODEL cannot be empty.")
+
+        base_url = os.getenv(
+            "RESEARCHMIND_BASE_URL", "https://openrouter.ai/api/v1"
+        ).rstrip("/")
+        if not base_url.startswith(("https://", "http://")):
+            raise ConfigurationError("RESEARCHMIND_BASE_URL must be an HTTP(S) URL.")
+
         return cls(
             api_key=api_key,
-            model=os.getenv("RESEARCHMIND_MODEL", "openai/gpt-4.1-mini").strip(),
-            base_url=os.getenv(
-                "RESEARCHMIND_BASE_URL", "https://openrouter.ai/api/v1"
-            ).rstrip("/"),
+            model=model,
+            base_url=base_url,
             timeout_seconds=timeout,
             data_dir=Path(os.getenv("RESEARCHMIND_DATA_DIR", ".researchmind")),
         )
