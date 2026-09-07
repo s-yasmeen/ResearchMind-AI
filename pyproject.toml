@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "researchmind-ai"
+version = "0.4.0"
+description = "Evidence-grounded, multi-agent research assistant"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Dr. Safia Yasmeen"}]
+dependencies = [
+  "pypdf>=6.0,<7",
+  "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "pytest-cov>=5,<6"]
+
+[project.scripts]
+researchmind = "researchmind.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["researchmind*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
