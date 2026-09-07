@@ -5,6 +5,7 @@ from collections.abc import Callable
 from .checkpoints import CheckpointStore
 from .config import Settings
 from .models import ResearchResult
+from .protocol import create_protocol
 from .router import route_query
 
 AgentHandler = Callable[[str], ResearchResult]
@@ -26,20 +27,34 @@ class ResearchEngine:
         agent = route_query(query)
         handler = self.handlers.get(agent)
         if handler is None:
+            protocol = create_protocol(query)
             result = ResearchResult(
                 query=query,
                 agent=agent,
-                answer="",
+                answer=(
+                    "A reproducible research protocol has been prepared. "
+                    f"Framework: {protocol.question.framework}. "
+                    f"Databases: {', '.join(protocol.search_plan.databases)}."
+                ),
                 warnings=[
-                    f"The {agent} agent is configured but its live evidence pipeline "
-                    "will be connected in Stage 2."
+                    "No literature claims have been generated because eligible studies "
+                    "have not yet been retrieved and appraised."
                 ],
             )
+            self.checkpoints.save(
+                query,
+                {"query": query, "protocol": protocol.to_dict(), "result": result.to_dict()},
+            )
+            return result
         else:
             result = handler(query)
 
         self.checkpoints.save(query, {"query": query, "result": result.to_dict()})
         return result
+
+    def plan(self, query: str):
+        """Create the auditable protocol before retrieval or generation."""
+        return create_protocol(query)
 
     def health(self) -> dict[str, object]:
         configured = bool(self.settings.api_key)
