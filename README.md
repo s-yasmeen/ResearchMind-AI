@@ -79,6 +79,23 @@ scorer for hybrid ranking. Every ranked passage retains its source identifier, d
 page range, section, and content hash. PDF extraction can still be imperfect for scanned or
 complex layouts, so flagged pages require human review before publication.
 
+## Advanced research agents
+
+The literature-review agent records every screening decision, builds a study-comparison
+matrix, identifies recurring methods/datasets/metrics/limitations, appraises evidence,
+maps explicitly coded contradictions, and reports corpus limitations before any narrative
+is drafted. Missing abstracts or years are routed to human review rather than guessed.
+
+The contribution agent permits a gap to become a proposed contribution only when the gap
+has a measurable evidence basis and at least moderate confidence. It creates a falsifiable
+experiment with baselines, primary outcomes, ablations, uncertainty estimates, robustness
+checks, and predeclared failure criteria.
+
+The mathematical-model agent builds normalized multi-objective formulations with explicit
+symbols, assumptions, constraints, derivation steps, identifiability conditions, sensitivity
+analysis, Pareto reporting, complexity analysis, invariants, and failure modes. It labels
+novelty and validity as hypotheses until prior-art and empirical verification are complete.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive
