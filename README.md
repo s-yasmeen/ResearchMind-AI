@@ -38,6 +38,21 @@ The diagnostic command does not call an external model and does not require an A
 It reports `setup_required` until a key is configured, rather than claiming live research
 is ready prematurely.
 
+## Research-integrity design
+
+ResearchMind follows a protocol-first workflow inspired by systematic-review practice:
+
+1. Frame the question before searching.
+2. Record databases, search strings, dates, and eligibility criteria.
+3. Preserve provenance and extraction fields for every study.
+4. Appraise observable quality indicators without pretending software replaces peer review.
+5. Generate a gap only when a measurable corpus property supports it.
+6. Attach a proposed experiment to every reported gap.
+7. Reject unresolved citation markers and unsupported high-confidence findings.
+
+The software does not treat an LLM suggestion as evidence. Human expert review remains
+required for eligibility decisions, risk-of-bias assessment, and final scientific claims.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive
