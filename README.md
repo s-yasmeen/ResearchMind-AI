@@ -101,6 +101,18 @@ or record; checks source retrievability, metadata, and retraction status; report
 contradictory support; and requires recorded expert approval for novelty, mathematical
 validity, interpretation, and final publication.
 
+Stage 7 binds cited excerpts to immutable content hashes and requires an independent semantic
+verifier for every linked passage. Claims are explicitly typed as direct evidence, inference,
+author contribution, hypothesis, speculation, or limitation. High-confidence conclusions need
+two independent primary-study groups, while review-only support for a primary result is blocked
+as possible citation laundering. Corrections, expressions of concern, and retractions are tracked.
+
+Publication approval is locked to a canonical manuscript fingerprint and expires after its
+declared validity period. A chained SHA-256 audit trail exposes later edits. Release also requires
+a statistical-validation record (assumptions, sample-size rationale, leakage tests, effect sizes,
+confidence intervals, and multiplicity handling) and a reproducibility package containing exact
+configuration, seeds, environment lock, dataset version, experiment logs, and code commit.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive
