@@ -68,6 +68,17 @@ The retrieval layer currently supports Crossref and arXiv descriptive metadata. 
 
 ResearchMind acknowledges arXiv metadata use and does not redistribute paper content.
 
+## Document intelligence
+
+User-authorized PDFs are validated by content signature, size, and SHA-256 hash before
+extraction. The document layer preserves page numbers, flags pages that may require OCR,
+rejects encrypted files, and builds section-aware evidence chunks with stable identifiers.
+
+The local evidence index implements BM25 keyword retrieval and accepts a pluggable semantic
+scorer for hybrid ranking. Every ranked passage retains its source identifier, document hash,
+page range, section, and content hash. PDF extraction can still be imperfect for scanned or
+complex layouts, so flagged pages require human review before publication.
+
 ## Security
 
 Never commit `.env`, API keys, downloaded papers, generated reports containing sensitive
